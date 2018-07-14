@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>ca.nuchange</groupId>
+	<artifactId>nuprescribe</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>nuprescribe</name>
+	<description>ePrescribe Software</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.3.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>10</java.version>
+		<build_date>${git.build.time}</build_date>
+		<build_time>${git.build.time}</build_time>
+		<build_revision>${git.commit.id}</build_revision>
+	</properties>
+
+	<dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+            <!-- build tag from git commit -->
+            <plugin>
+
+                <groupId>pl.project13.maven</groupId>
+
+                <artifactId>git-commit-id-plugin</artifactId>
+
+                <version>2.2.4</version>
+
+                <executions>
+
+                    <execution>
+
+                        <id>get-the-git-infos</id>
+
+                        <goals>
+
+                            <goal>revision</goal>
+
+                        </goals>
+
+                    </execution>
+                    <execution>
+
+                        <id>validate-the-git-infos</id>
+
+                        <goals>
+
+                            <goal>validateRevision</goal>
+
+                        </goals>
+
+                        <phase>package</phase>
+
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <failOnNoGitDirectory>false</failOnNoGitDirectory>
+
+                    <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+
+                    <prefix>git</prefix>
+
+                    <verbose>true</verbose>
+
+                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
+
+                    <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties
+                    </generateGitPropertiesFilename>
+
+                    <format>json</format>
+
+                    <gitDescribe>
+
+                        <skip>false</skip>
+
+                        <always>false</always>
+
+                        <dirty>-dirty</dirty>
+
+                    </gitDescribe>
+                    <excludeProperties>
+                        <excludeProperty>git.user.*</excludeProperty>
+                    </excludeProperties>
+                    <validationProperties>
+
+                        <!-- verify that the current repository is not dirty -->
+
+                        <validationProperty>
+
+                            <name>validating git dirty</name>
+
+                            <value>${git.dirty}</value>
+
+                            <shouldMatchTo>false</shouldMatchTo>
+
+                        </validationProperty>
+
+                    </validationProperties>
+                </configuration>
+
+            </plugin>
+		</plugins>
+	</build>
+
+
+</project>
