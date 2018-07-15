@@ -1,12 +1,52 @@
 package ca.nuchange.nuprescribe;
 
-import org.springframework.boot.SpringApplication;
+import ca.nuchange.nuprescribe.config.StageManager;
+import ca.nuchange.nuprescribe.view.FxmlView;
+import javafx.application.Application;
+import javafx.stage.Stage;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-public class NuprescribeApplication {
+public class NuprescribeApplication extends Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(NuprescribeApplication.class, args);
-	}
+    protected ConfigurableApplicationContext springContext;
+    protected StageManager stageManager;
+
+    public static void main(final String[] args) {
+        Application.launch(args);
+    }
+
+    @Override
+    public void init() {
+        springContext = springBootApplicationContext();
+    }
+
+    @Override
+    public void start(Stage stage) {
+        stageManager = springContext.getBean(StageManager.class, stage);
+        displayInitialScene();
+    }
+
+    @Override
+    public void stop() {
+        springContext.close();
+    }
+
+    /**
+     * Useful to override this method by sub-classes wishing to change the first
+     * Scene to be displayed on startup. Example: Functional tests on main
+     * window.
+     */
+    protected void displayInitialScene() {
+        stageManager.switchScene(FxmlView.LOGIN);
+    }
+
+
+    private ConfigurableApplicationContext springBootApplicationContext() {
+        SpringApplicationBuilder builder = new SpringApplicationBuilder(NuprescribeApplication.class);
+        String[] args = getParameters().getRaw().stream().toArray(String[]::new);
+        return builder.run(args);
+    }
 }

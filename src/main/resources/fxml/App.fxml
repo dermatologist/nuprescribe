@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<TabPane xmlns:fx="http://javafx.com/fxml/1" id="tpMain" maxHeight="-Infinity" maxWidth="-Infinity"
+         minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+         stylesheets="@../styles/Styles.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.121"
+         fx:controller="ca.nuchange.nuprescribe.controller.AppController">
+    <tabs>
+        <Tab id="PaneSearch" text="SEARCH">
+            <content>
+                <AnchorPane id="apSearch" prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <Label layoutX="14.0" layoutY="14.0" prefHeight="16.0" prefWidth="192.0"
+                               text="Step 1: Choose Folder:"/>
+                        <Button fx:id="btnFolder" layoutX="207.0" layoutY="9.0" mnemonicParsing="false"
+                                onAction="#btnFolderAction" text="Choose Folder"/>
+                        <Label fx:id="lblFolder" layoutX="372.0" layoutY="14.0"/>
+                        <Label layoutX="14.0" layoutY="48.0" text="Step 2: Enter Search Parameters:"/>
+                        <TextField fx:id="txtID" layoutX="14.0" layoutY="75.0" prefHeight="39.0" prefWidth="83.0"
+                                   promptText="ID"/>
+                        <TextField fx:id="txtDiagnosis" layoutX="97.0" layoutY="75.0" prefHeight="39.0"
+                                   prefWidth="127.0" promptText="Diagnosis"/>
+                        <TextField fx:id="txtLesion" layoutX="224.0" layoutY="75.0" prefHeight="39.0" prefWidth="133.0"
+                                   promptText="Lesion"/>
+                        <TextField fx:id="txtTreatment" layoutX="357.0" layoutY="75.0" prefHeight="39.0"
+                                   prefWidth="130.0" promptText="Treatment"/>
+                        <TextField fx:id="txtDate" layoutX="487.0" layoutY="75.0" prefHeight="39.0" prefWidth="99.0"
+                                   promptText="Date"/>
+                        <Separator layoutX="14.0" layoutY="124.0" prefHeight="16.0" prefWidth="573.0"/>
+                        <ImageView fx:id="imgView" fitHeight="150.0" fitWidth="200.0" layoutX="387.0" layoutY="156.0"
+                                   pickOnBounds="true" preserveRatio="true"/>
+                        <Separator layoutX="376.0" layoutY="131.0" orientation="VERTICAL" prefHeight="224.0"
+                                   prefWidth="14.0"/>
+                        <TableView fx:id="tblImages" layoutX="98.0" layoutY="143.0" prefHeight="200.0"
+                                   prefWidth="272.0">
+                            <columns>
+                                <TableColumn fx:id="tblColLocation" prefWidth="271.0" text="Location"/>
+                            </columns>
+                        </TableView>
+                        <Button fx:id="btnSearch" layoutX="14.0" layoutY="158.0" mnemonicParsing="false"
+                                onAction="#btnSearchAction" prefWidth="65.0" text="Search"/>
+                        <Button fx:id="btnExit" layoutX="14.0" layoutY="250.0" mnemonicParsing="false"
+                                onAction="#btnExitAction" prefWidth="65.0" text="Exit"/>
+                        <Button fx:id="btnClear" layoutX="14.0" layoutY="204.0" mnemonicParsing="false"
+                                onAction="#btnClearAction" prefWidth="65.0" text="Clear"/>
+                        <Label fx:id="lblVersion" layoutX="14.0" layoutY="345.0" prefHeight="16.0" prefWidth="358.0">
+                            <font>
+                                <Font size="10.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+        <Tab id="PaneEdit" text="EDIT">
+            <content>
+                <AnchorPane fx:id="btnFile" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <Label layoutX="14.0" layoutY="14.0" prefHeight="16.0" prefWidth="192.0"
+                               text="Step 1: Choose File:"/>
+                        <Button fx:id="btnFolder" layoutX="189.0" layoutY="9.0" mnemonicParsing="false"
+                                onAction="#btnFolderAction" text="Choose File"/>
+                        <Label layoutX="14.0" layoutY="55.0" text="Step 2: Enter Tags:"/>
+                        <TextField fx:id="txtID" layoutX="14.0" layoutY="83.0" prefHeight="39.0" prefWidth="83.0"
+                                   promptText="ID"/>
+                        <TextField fx:id="txtDiagnosis" layoutX="97.0" layoutY="83.0" prefHeight="39.0"
+                                   prefWidth="127.0" promptText="Diagnosis"/>
+                        <TextField fx:id="txtLesion" layoutX="224.0" layoutY="83.0" prefHeight="39.0" prefWidth="133.0"
+                                   promptText="Lesion"/>
+                        <TextField fx:id="txtTreatment" layoutX="357.0" layoutY="83.0" prefHeight="39.0"
+                                   prefWidth="130.0" promptText="Treatment"/>
+                        <TextField fx:id="txtDate" layoutX="487.0" layoutY="83.0" prefHeight="39.0" prefWidth="99.0"
+                                   promptText="Date"/>
+                        <Button fx:id="btnSetTag" layoutX="14.0" layoutY="150.0" mnemonicParsing="false"
+                                onAction="#btnSearchAction" prefHeight="26.0" prefWidth="95.0" text="Set Tags"/>
+                        <Button fx:id="btnReadTag" layoutX="187.0" layoutY="150.0" mnemonicParsing="false"
+                                onAction="#btnSearchAction" prefHeight="26.0" prefWidth="98.0" text="Read Tags"/>
+                        <Button fx:id="btnClear" layoutX="357.0" layoutY="150.0" mnemonicParsing="false"
+                                onAction="#btnClearAction" prefWidth="103.0" text="Clear"/>
+                        <Button fx:id="btnExit" layoutX="505.0" layoutY="150.0" mnemonicParsing="false"
+                                onAction="#btnExitAction" prefHeight="26.0" prefWidth="81.0" text="Exit"/>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+        <Tab text="HELP/ABOUT">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
